@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Executive Summary — The Contraband Atlas</title>
+<meta name="description" content="The highest-leverage free tools, mapped directly to Ali's project stack: ForkFox, Caposeo, Janus, Launch Sentinel, and the shared dev/design workflow." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f7f4ec; --lifted:#fffdf7; --ink:#1b1a17; --graphite:#6c675d;
+    --stamp:#c2352a; --oxblood:#8f261d; --sand:#e4ddcc; --ochre:#a8761f;
+    --charcoal:#4d4a42; --olive:#4f5d39;
+    --serif:"Fraunces",Georgia,serif; --sans:"Schibsted Grotesk",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace; --measure:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.045; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); mix-blend-mode:multiply}
+  .wrap{max-width:var(--measure); margin:0 auto; padding:0 clamp(20px,5vw,48px); position:relative; z-index:2}
+  a{color:inherit; text-decoration:none}
+  .mono{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; color:var(--graphite)}
+  nav{position:sticky; top:0; z-index:50; background:rgba(247,244,236,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--sand)}
+  .nav-in{max-width:var(--measure); margin:0 auto; padding:14px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.74rem}
+  .seal{width:26px; height:26px; border:1.5px solid var(--stamp); border-radius:50%; display:grid; place-items:center; color:var(--stamp); font-size:.6rem; transform:rotate(-12deg); flex:none}
+  .nav-links{display:flex; gap:clamp(10px,2.5vw,26px); align-items:center}
+  .nav-links a{font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--graphite); padding-bottom:3px; border-bottom:1.5px solid transparent; transition:.16s}
+  .nav-links a:hover{color:var(--ink); border-color:var(--stamp)}
+  .nav-links a.active{color:var(--ink); border-color:var(--ink)}
+
+  header.hero{padding:clamp(48px,9vw,96px) 0 clamp(24px,4vw,44px)}
+  .kicker{display:inline-flex; align-items:center; gap:10px; margin-bottom:24px}
+  .kicker .tick{width:34px; height:1px; background:var(--stamp)}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(2.4rem,6.5vw,4.6rem); line-height:1; letter-spacing:-.025em}
+  h1 em{color:var(--stamp); font-style:italic; font-weight:500}
+  .standfirst{font-size:clamp(1.05rem,2.4vw,1.28rem); color:var(--graphite); max-width:680px; margin-top:24px}
+
+  /* TOP 10 LEAGUE TABLE */
+  section{padding:clamp(32px,5vw,56px) 0}
+  .sec-head{margin-bottom:30px}
+  .sec-head h2{font-family:var(--serif); font-weight:600; font-size:clamp(1.7rem,4vw,2.6rem); letter-spacing:-.02em; line-height:1.05}
+  .sec-head p{color:var(--graphite); margin-top:10px; max-width:64ch}
+  .league{display:grid; gap:0; border-top:2px solid var(--ink)}
+  .row{display:grid; grid-template-columns:48px 1.1fr 2.4fr; gap:18px; align-items:baseline; padding:18px 0; border-bottom:1px solid var(--sand); transition:.15s}
+  .row:hover{background:var(--lifted)}
+  .rank{font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--stamp); line-height:1}
+  .row .tool{font-family:var(--serif); font-size:1.22rem; font-weight:600}
+  .row .tool a:hover{color:var(--stamp)}
+  .row .tool .d{display:block; font-family:var(--mono); font-size:.6rem; color:var(--graphite); letter-spacing:.06em; margin-top:4px; text-transform:none}
+  .row .why{color:#403d37; font-size:.96rem}
+  @media(max-width:640px){.row{grid-template-columns:34px 1fr; gap:6px 12px}.row .why{grid-column:1/-1;padding-left:46px}}
+
+  /* PROJECT CARDS */
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:18px}
+  .proj{background:var(--lifted); border:1px solid var(--sand); border-radius:3px; padding:26px 24px; border-top:3px solid var(--stamp)}
+  .proj .tag{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--stamp)}
+  .proj h3{font-family:var(--serif); font-size:1.6rem; font-weight:600; margin:6px 0 4px; letter-spacing:-.01em}
+  .proj .ctx{font-size:.85rem; color:var(--graphite); margin-bottom:18px; font-style:italic}
+  .proj ul{list-style:none}
+  .proj li{padding:11px 0; border-top:1px solid var(--sand); font-size:.92rem}
+  .proj li:first-of-type{border-top:1px solid var(--ink)}
+  .proj li b{font-family:var(--mono); font-size:.74rem; text-transform:none; letter-spacing:.01em; color:var(--ink); font-weight:700}
+  .proj li b a:hover{color:var(--stamp)}
+  .proj li span{display:block; color:#4f4c45; margin-top:3px}
+
+  .pull{background:var(--ink); color:var(--paper); border-radius:4px; padding:clamp(28px,4vw,44px); margin-top:10px}
+  .pull .mono{color:#8d887c}
+  .pull h3{font-family:var(--serif); font-size:clamp(1.4rem,3vw,2rem); font-weight:600; margin:10px 0 14px; color:#fff}
+  .pull p{color:#c4bfb2; max-width:70ch}
+  .pull a{color:#fff; border-bottom:1px solid var(--stamp)}
+
+  footer{border-top:2px solid var(--ink); background:var(--ink); color:var(--paper); padding:48px 0 40px; position:relative; z-index:2; margin-top:40px}
+  footer .foot-links{display:flex; gap:22px; flex-wrap:wrap}
+  footer .foot-links a{font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:#cfc9bc; border-bottom:1px solid transparent; padding-bottom:2px}
+  footer .foot-links a:hover{color:#fff; border-color:var(--stamp)}
+  @media(max-width:720px){.nav-links a:not(.active){display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="seal">✦</span> The Contraband Atlas</a>
+    <div class="nav-links">
+      <a href="index.html">Catalog</a>
+      <a href="summary.html" class="active">Exec Summary</a>
+      <a href="ideas.html">20 Ideas</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker"><span class="tick"></span><span class="mono">Executive Summary · Mapped To Your Stack</span></div>
+    <h1>The tools you'll<br /><em>actually</em> use.</h1>
+    <p class="standfirst">100 tools is a buffet. This is the plate. Below: the ten highest-leverage picks overall, then the exact tools that slot into ForkFox, Caposeo, Janus, Launch Sentinel, your shared design/dev workflow, and the security hygiene you've already been burned without.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The Top 10, ranked by leverage</h2>
+      <p>Picked for how often they'll touch your real work — not novelty. These pay for themselves the first week.</p>
+    </div>
+    <div class="league">
+      <div class="row"><div class="rank">1</div><div class="tool"><a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a><span class="d">squoosh.app</span></div><div class="why">Your mobile-first mandate is <b>bundle &lt; 1MB, WebP, lazy-load</b>. Squoosh compresses to WebP with live before/after, offline, free. Image weight is also a direct Core Web Vitals / SEO ranking factor — this one tool serves every site you ship.</div></div>
+      <div class="row"><div class="rank">2</div><div class="tool"><a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a><span class="d">pexels.com</span></div><div class="why">Already the backbone of the ForkFox media pipeline. No-attribution photos <em>and</em> video — the legal, free engine behind hero media for Dish/Carte and every marketing page.</div></div>
+      <div class="row"><div class="rank">3</div><div class="tool"><a href="https://www.photopea.com/" target="_blank" rel="noopener">Photopea</a><span class="d">photopea.com</span></div><div class="why">Full Photoshop in-browser, opens PSDs. The fix for the recurring logo problem — crop transparent padding (the Caposeo bbox issue), composite heroes, export retina assets with zero install.</div></div>
+      <div class="row"><div class="rank">4</div><div class="tool"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a><span class="d">perplexity.ai</span></div><div class="why">Cited AI search — your fast lane for restaurant facts (ForkFox), competitor/SERP intel (Caposeo) and product enrichment (Launch Sentinel) without burning Anthropic API quota you've already hit ceilings on.</div></div>
+      <div class="row"><div class="rank">5</div><div class="tool"><a href="https://crontab.guru/" target="_blank" rel="noopener">Crontab.guru</a><span class="d">crontab.guru</span></div><div class="why">ForkFox runs 3×/day; Launch Sentinel runs 10 crons; JobBoard chains GHA stages. One mis-typed cron expression = a silent dead pipeline. This decodes any schedule instantly.</div></div>
+      <div class="row"><div class="rank">6</div><div class="tool"><a href="https://languagetool.org/" target="_blank" rel="noopener">LanguageTool</a><span class="d">languagetool.org</span></div><div class="why">A free, self-hostable grammar/style layer to bolt onto the ForkFox anti-slop bar — automated, no hand-editing (your hard rule), catching passive/clunky prose before publish.</div></div>
+      <div class="row"><div class="rank">7</div><div class="tool"><a href="https://archive.ph/" target="_blank" rel="noopener">Archive.ph</a><span class="d">archive.ph</span></div><div class="why">Snapshot every restaurant/source page you cite in ForkFox → permanent dead-link insurance for your external-linking rule, and frozen competitor pages for Caposeo audits.</div></div>
+      <div class="row"><div class="rank">8</div><div class="tool"><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">HaveIBeenPwned</a><span class="d">haveibeenpwned.com</span></div><div class="why">After the Firecrawl key-leak incident, breach hygiene isn't optional. Pair with VirusTotal + privnote (share secrets safely instead of inline) as standing ops practice.</div></div>
+      <div class="row"><div class="rank">9</div><div class="tool"><a href="https://lucide.dev/" target="_blank" rel="noopener">Lucide</a><span class="d">lucide.dev</span></div><div class="why">One consistent, MIT-licensed icon set across BoardLord, PhynxTimer, Caposeo, Moonlight — kills the mismatched-icon look and ships clean with React.</div></div>
+      <div class="row"><div class="rank">10</div><div class="tool"><a href="https://www.ray.so/" target="_blank" rel="noopener">Ray.so</a><span class="d">www.ray.so</span></div><div class="why">Gorgeous code screenshots for the claude-skills-100 showcase, the cheatsheet repo, and social posts. Carbon.now.sh is the alt. Instant credibility on a content page.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Mapped to each project</h2>
+      <p>The same catalog, sorted by where it actually plugs into your portfolio.</p>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj">
+        <span class="tag">Content &amp; Social</span>
+        <h3>ForkFox</h3>
+        <p class="ctx">Media pipeline · anti-slop prose · external-linking rule</p>
+        <ul>
+          <li><b><a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels + Pixabay</a></b><span>Already wired as the stock media engine — keep them central.</span></li>
+          <li><b><a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh / TinyPNG</a></b><span>WebP-compress every hero before publish for fast mobile loads.</span></li>
+          <li><b><a href="https://archive.ph/" target="_blank" rel="noopener">Archive.ph + TinEye</a></b><span>Freeze cited restaurant pages; reverse-check image origins.</span></li>
+          <li><b><a href="https://languagetool.org/" target="_blank" rel="noopener">LanguageTool + Hemingway</a></b><span>Automated prose-quality gate for the zero-slop bar.</span></li>
+          <li><b><a href="https://clipchamp.com/en/" target="_blank" rel="noopener">Clipchamp + AudioMass</a></b><span>Cut social video/audio clips in-browser for the 3×/day pipeline.</span></li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <span class="tag">SEO Intelligence</span>
+        <h3>Caposeo</h3>
+        <p class="ctx">Core Web Vitals · competitor intel · the logo bbox fix</p>
+        <ul>
+          <li><b><a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a></b><span>Image weight is a literal ranking signal — demo it inside audits.</span></li>
+          <li><b><a href="https://www.photopea.com/" target="_blank" rel="noopener">Photopea + remove.bg</a></b><span>Crop the transparent-padding logo issue; clean client assets.</span></li>
+          <li><b><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a></b><span>Cited SERP/competitor research without API quota burn.</span></li>
+          <li><b><a href="https://archive.ph/" target="_blank" rel="noopener">Archive.ph</a></b><span>Snapshot competitor pages to track on-page changes over time.</span></li>
+          <li><b><a href="https://alternativeto.net/" target="_blank" rel="noopener">AlternativeTo</a></b><span>Map the competitive landscape for any niche you target.</span></li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <span class="tag">Frontend · All Sites</span>
+        <h3>Shared Design Kit</h3>
+        <p class="ctx">BoardLord · PhynxTimer · Moonlight · Construction · Ink &amp; Ivory</p>
+        <ul>
+          <li><b><a href="https://lucide.dev/" target="_blank" rel="noopener">Lucide + Heroicons</a></b><span>Consistent open-source icons across every React build.</span></li>
+          <li><b><a href="https://undraw.co/" target="_blank" rel="noopener">unDraw</a></b><span>Recolorable illustrations matched to each brand palette.</span></li>
+          <li><b><a href="https://coolors.co/" target="_blank" rel="noopener">Coolors</a></b><span>Generate the 20–40 palette variations you like to review.</span></li>
+          <li><b><a href="https://tinypng.com/" target="_blank" rel="noopener">TinyPNG / Squoosh</a></b><span>Hit the &lt;1MB mobile bundle rule on every page.</span></li>
+          <li><b><a href="https://excalidraw.com/" target="_blank" rel="noopener">Excalidraw + tldraw</a></b><span>Architecture + zone diagrams (you already use Excalidraw).</span></li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <span class="tag">Dev Workflow</span>
+        <h3>Daily Engineering</h3>
+        <p class="ctx">Cron-heavy pipelines · React/TS · GitHub repos</p>
+        <ul>
+          <li><b><a href="https://crontab.guru/" target="_blank" rel="noopener">Crontab.guru</a></b><span>Verify every cron in ForkFox / Launch Sentinel / JobBoard.</span></li>
+          <li><b><a href="https://regex101.com/" target="_blank" rel="noopener">Regex101 + explainshell</a></b><span>Debug regexes and decode shell one-liners safely.</span></li>
+          <li><b><a href="https://transform.tools/" target="_blank" rel="noopener">transform.tools</a></b><span>JSON↔TS, schema↔types — instant boilerplate conversion.</span></li>
+          <li><b><a href="https://caniuse.com/" target="_blank" rel="noopener">Can I Use + DevDocs</a></b><span>Browser-support checks for your mobile-first CSS.</span></li>
+          <li><b><a href="https://shields.io/" target="_blank" rel="noopener">Shields.io</a></b><span>Polished README badges for every public repo.</span></li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <span class="tag">Research &amp; Strategy</span>
+        <h3>Launch Sentinel + GTM</h3>
+        <p class="ctx">Enrichment · market sizing · financial modeling</p>
+        <ul>
+          <li><b><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity + Consensus</a></b><span>Cited enrichment + evidence-backed market claims.</span></li>
+          <li><b><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a></b><span>Free, ad-free academic search for deeper market work.</span></li>
+          <li><b><a href="https://www.wolframalpha.com/" target="_blank" rel="noopener">WolframAlpha</a></b><span>TAM math, unit economics, cohort calcs for startup modeling.</span></li>
+          <li><b><a href="https://www.researchrabbit.ai/" target="_blank" rel="noopener">ResearchRabbit</a></b><span>Map adjacent work fast when scoping a new vertical.</span></li>
+          <li><b><a href="https://www.summarize.tech/" target="_blank" rel="noopener">summarize.tech</a></b><span>Compress hour-long founder/strategy videos into notes.</span></li>
+        </ul>
+      </div>
+
+      <div class="proj">
+        <span class="tag">Security &amp; Ops</span>
+        <h3>Hygiene (post-leak)</h3>
+        <p class="ctx">After the Firecrawl key-leak incident — make this standing practice</p>
+        <ul>
+          <li><b><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">HaveIBeenPwned</a></b><span>Check every account email against known breaches.</span></li>
+          <li><b><a href="https://www.virustotal.com/" target="_blank" rel="noopener">VirusTotal + URLVoid</a></b><span>Scan files/URLs before trusting any dependency or link.</span></li>
+          <li><b><a href="https://privnote.com/" target="_blank" rel="noopener">Privnote</a></b><span>Share a secret once, self-destructing — never paste keys inline.</span></li>
+          <li><b><a href="https://simplelogin.io/" target="_blank" rel="noopener">SimpleLogin + temp-mail</a></b><span>Alias emails / throwaway inboxes to test your own SaaS signups.</span></li>
+          <li><b><a href="https://whoer.net/" target="_blank" rel="noopener">Whoer</a></b><span>See exactly what your deployed apps leak about a visitor.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="pull">
+      <span class="mono">The one-line takeaway</span>
+      <h3>Eight tools cover ~80% of your weekly work.</h3>
+      <p>Bookmark <a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a>, <a href="https://www.pexels.com/" target="_blank" rel="noopener">Pexels</a>, <a href="https://www.photopea.com/" target="_blank" rel="noopener">Photopea</a>, <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a>, <a href="https://crontab.guru/" target="_blank" rel="noopener">Crontab.guru</a>, <a href="https://lucide.dev/" target="_blank" rel="noopener">Lucide</a>, <a href="https://archive.ph/" target="_blank" rel="noopener">Archive.ph</a> and <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">HaveIBeenPwned</a>. Everything else in the catalog is situational — reach for it when the job calls. Then see <a href="ideas.html">the 20 product ideas</a> for where this turns into something you can sell.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="index.html">← Full Catalog</a>
+      <a href="ideas.html">20 Product Ideas →</a>
+      <a href="https://github.com/Moh4696/websites-100-audit" target="_blank" rel="noopener">Source Audit</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

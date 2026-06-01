@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Contraband Atlas — 100 Free Tools That Should Be Illegal</title>
+<meta name="description" content="A curated, audited catalog of 100 genuinely useful free tools across 12 categories. Honest reviews, freemium and grey-area flags, 98/100 verified live." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f7f4ec; --lifted:#fffdf7; --ink:#1b1a17; --graphite:#6c675d;
+    --stamp:#c2352a; --oxblood:#8f261d; --sand:#e4ddcc; --ochre:#a8761f;
+    --charcoal:#4d4a42; --olive:#4f5d39;
+    --serif:"Fraunces",Georgia,serif; --sans:"Schibsted Grotesk",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --measure:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  /* paper grain */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto; padding:0 clamp(20px,5vw,48px); position:relative; z-index:2}
+  a{color:inherit; text-decoration:none}
+  .mono{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; color:var(--graphite)}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(247,244,236,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--sand)}
+  .nav-in{max-width:var(--measure); margin:0 auto; padding:14px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.74rem}
+  .seal{width:26px; height:26px; border:1.5px solid var(--stamp); border-radius:50%; display:grid; place-items:center; color:var(--stamp); font-size:.6rem; transform:rotate(-12deg); flex:none}
+  .nav-links{display:flex; gap:clamp(10px,2.5vw,26px); align-items:center}
+  .nav-links a{font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--graphite); padding-bottom:3px; border-bottom:1.5px solid transparent; transition:.16s}
+  .nav-links a:hover{color:var(--ink); border-color:var(--stamp)}
+  .nav-links a.active{color:var(--ink); border-color:var(--ink)}
+
+  /* HERO */
+  header.hero{padding:clamp(48px,9vw,104px) 0 clamp(30px,5vw,56px)}
+  .kicker{display:inline-flex; align-items:center; gap:10px; margin-bottom:24px}
+  .kicker .tick{width:34px; height:1px; background:var(--stamp)}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(2.6rem,7.5vw,5.4rem); line-height:.98; letter-spacing:-.025em}
+  h1 .red{color:var(--stamp); font-style:italic; font-weight:500}
+  .standfirst{font-size:clamp(1.05rem,2.4vw,1.3rem); color:var(--graphite); max-width:620px; margin-top:26px}
+  .stats{display:flex; flex-wrap:wrap; gap:clamp(20px,5vw,52px); margin-top:42px; padding-top:28px; border-top:1px solid var(--sand)}
+  .stat .n{font-family:var(--serif); font-size:clamp(2rem,5vw,2.9rem); font-weight:600; line-height:1; color:var(--ink)}
+  .stat .n em{color:var(--stamp); font-style:normal}
+  .stat .l{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:.62rem; color:var(--graphite); margin-top:8px}
+
+  /* CONTROLS */
+  .controls{position:sticky; top:53px; z-index:40; background:rgba(247,244,236,.9); backdrop-filter:blur(8px); padding:20px 0 16px; border-bottom:1px solid var(--sand)}
+  .search{position:relative; margin-bottom:16px}
+  .search input{width:100%; background:var(--lifted); border:1px solid var(--sand); border-radius:3px; padding:14px 16px 14px 44px; font-family:var(--mono); font-size:.85rem; color:var(--ink); outline:none; transition:.16s}
+  .search input::placeholder{color:#a39d90; text-transform:uppercase; letter-spacing:.08em; font-size:.74rem}
+  .search input:focus{border-color:var(--stamp); box-shadow:0 0 0 3px rgba(194,53,42,.08)}
+  .search svg{position:absolute; left:15px; top:50%; transform:translateY(-50%); width:17px; height:17px; stroke:var(--graphite)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{font-family:var(--mono); font-size:.64rem; text-transform:uppercase; letter-spacing:.1em; padding:7px 13px; border:1px solid var(--sand); border-radius:999px; background:var(--lifted); color:var(--graphite); cursor:pointer; transition:.14s; white-space:nowrap}
+  .chip:hover{border-color:var(--ink); color:var(--ink)}
+  .chip.active{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+  .count{font-family:var(--mono); font-size:.64rem; color:var(--graphite); letter-spacing:.1em; margin-top:14px; text-transform:uppercase}
+
+  /* CATALOG */
+  main{padding:8px 0 60px}
+  .cat-head{display:flex; align-items:baseline; gap:16px; margin:54px 0 22px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+  .cat-head h2{font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.6vw,2.3rem); letter-spacing:-.02em}
+  .cat-head .cn{font-family:var(--mono); font-size:.66rem; color:var(--graphite); letter-spacing:.12em; margin-left:auto}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px}
+  .card{position:relative; background:var(--lifted); border:1px solid var(--sand); border-radius:3px; padding:20px 20px 18px; transition:.18s; overflow:hidden}
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--stamp); transform:scaleY(0); transform-origin:top; transition:transform .2s ease}
+  .card:hover{box-shadow:0 14px 34px -18px rgba(27,26,23,.4); transform:translateY(-2px)}
+  .card:hover::before{transform:scaleY(1)}
+  .card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+  .idx{font-family:var(--mono); font-size:.7rem; color:#b7b1a3; font-weight:500}
+  .card h3{font-family:var(--serif); font-size:1.28rem; font-weight:600; line-height:1.1; margin:6px 0 2px}
+  .card h3 a{transition:.14s} .card h3 a:hover{color:var(--stamp)}
+  .domain{font-family:var(--mono); font-size:.66rem; color:var(--graphite); letter-spacing:.04em; word-break:break-all}
+  .domain .arrow{color:var(--stamp); opacity:0; transition:.14s} .card:hover .domain .arrow{opacity:1}
+  .review{font-size:.92rem; color:#403d37; margin-top:12px}
+  .badge{display:inline-block; font-family:var(--mono); font-size:.56rem; text-transform:uppercase; letter-spacing:.12em; padding:3px 8px; border-radius:2px; border:1px solid; margin-top:13px}
+  .b-free{color:var(--olive); border-color:var(--olive)}
+  .b-freemium{color:var(--ochre); border-color:var(--ochre)}
+  .b-grey{color:var(--charcoal); border-color:var(--charcoal); background:#f0ece1}
+  .empty{font-family:var(--mono); color:var(--graphite); padding:60px 0; text-align:center; letter-spacing:.08em; font-size:.78rem}
+
+  /* FOOTER */
+  footer{border-top:2px solid var(--ink); background:var(--ink); color:var(--paper); padding:56px 0 44px; position:relative; z-index:2}
+  footer .wrap{color:var(--paper)}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:40px}
+  footer h4{font-family:var(--serif); font-size:1.5rem; font-weight:600; margin-bottom:14px}
+  footer p{color:#b8b3a6; font-size:.9rem; max-width:48ch}
+  footer .mono{color:#8d887c}
+  .foot-links{display:flex; flex-direction:column; gap:10px}
+  .foot-links a{font-family:var(--mono); font-size:.74rem; text-transform:uppercase; letter-spacing:.1em; color:#cfc9bc; border-bottom:1px solid transparent; width:fit-content; padding-bottom:2px; transition:.14s}
+  .foot-links a:hover{color:#fff; border-color:var(--stamp)}
+  .legal{margin-top:40px; padding-top:22px; border-top:1px solid #3a382f; font-family:var(--mono); font-size:.62rem; color:#6f6a5e; letter-spacing:.06em; line-height:1.9}
+  @media(max-width:720px){ .foot-grid{grid-template-columns:1fr} .nav-links a:not(.active){display:none} .controls{top:51px} }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="seal">✦</span> The Contraband Atlas</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Catalog</a>
+      <a href="summary.html">Exec Summary</a>
+      <a href="ideas.html">20 Ideas</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker"><span class="tick"></span><span class="mono">Curated &amp; Audited · v2026.05</span></div>
+    <h1>100 Free Tools<br />That Should Be <span class="red">Illegal</span></h1>
+    <p class="standfirst">A working catalog of genuinely useful free websites — every entry reviewed honestly, every link liveness-checked. Freemium and legally grey sites are flagged so you know exactly what you're getting.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">100</div><div class="l">Tools Catalogued</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">Categories</div></div>
+      <div class="stat"><div class="n"><em>98</em>/100</div><div class="l">Verified Live</div></div>
+      <div class="stat"><div class="n">$0</div><div class="l">Cost To Use</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="Search 100 tools — try 'pdf', 'image', 'research'…" autocomplete="off" />
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="count" id="count"></div>
+  </div>
+</div>
+
+<main><div class="wrap" id="catalog"></div></main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>How this was built</h4>
+        <p>Sourced from the <em>websites-100-audit</em> repository: 100 free tools, each with an honest one-line review and a full HTTP liveness audit (98/100 live; dead, defunct, and grey-area entries flagged). Capabilities here reflect that curated audit rather than a fresh crawl of every site — the audit already verified each link.</p>
+        <p class="mono" style="margin-top:18px">Corrected per audit: annas-archive.gs · www.ray.so · Fakespot retired → TheReviewIndex</p>
+      </div>
+      <div>
+        <div class="foot-links">
+          <a href="summary.html">→ Executive Summary</a>
+          <a href="ideas.html">→ 20 Product Ideas</a>
+          <a href="https://github.com/Moh4696/websites-100-audit" target="_blank" rel="noopener">→ Source Audit Repo</a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      ⚠️ Grey-area entries (pdfdrive · libgen · annas-archive · sci-hub) provide copyrighted material without permission and are included only for completeness — using them may be illegal where you live. · Freemium tools have a genuine free tier; some gate advanced features behind payment.
+    </div>
+  </div>
+</footer>
+
+<script>
+const TOOLS = [
+ // Media, Streaming & Audio
+ {n:1,name:"cobalt.tools",url:"https://cobalt.tools/",cat:"Media & Audio",f:"free",r:"Download video/audio from almost any social platform. Clean, no ads, no watermarks — best in its class."},
+ {n:2,name:"justwatch.com",url:"https://www.justwatch.com/",cat:"Media & Audio",f:"free",r:"Tells you which streaming service has the movie/show you want. Saves you app-hopping."},
+ {n:3,name:"archive.org",url:"https://archive.org/",cat:"Media & Audio",f:"free",r:"The Internet Archive: old web pages plus free public-domain movies, music, books and software."},
+ {n:4,name:"archive.ph",url:"https://archive.ph/",cat:"Media & Audio",f:"free",r:"Permanently snapshot any web page. Great for citations and dead-link insurance."},
+ {n:5,name:"tunefind.com",url:"https://www.tunefind.com/",cat:"Media & Audio",f:"free",r:"Find the exact song from any TV/movie scene. Crowd-sourced and reliable; ad-heavy UI."},
+ {n:6,name:"radio.garden",url:"https://radio.garden/",cat:"Media & Audio",f:"free",r:"Spin a globe and listen to live radio from anywhere on Earth. Oddly addictive."},
+ {n:7,name:"musicforprogramming.net",url:"https://musicforprogramming.net/",cat:"Media & Audio",f:"free",r:"Long-form ambient mixes built for deep focus. No account, no fluff."},
+ {n:8,name:"mynoise.net",url:"https://mynoise.net/",cat:"Media & Audio",f:"free",r:"Customizable noise generators with per-frequency sliders. Donation-supported, fully usable free."},
+ {n:9,name:"summarize.tech",url:"https://www.summarize.tech/",cat:"Media & Audio",f:"free",r:"AI summaries of long YouTube videos. Great for lectures and podcasts."},
+ {n:10,name:"subtitlecat.com",url:"https://subtitlecat.com/",cat:"Media & Audio",f:"free",r:"Auto-generates and translates subtitles for videos. Quality varies, but free and fast."},
+ {n:11,name:"audiomass.co",url:"https://audiomass.co/",cat:"Media & Audio",f:"free",r:"A surprisingly capable audio editor that runs entirely in your browser. No install, no signup."},
+ {n:12,name:"clipchamp.com",url:"https://clipchamp.com/en/",cat:"Media & Audio",f:"freemium",r:"Browser video editor (now Microsoft). Solid free tier; some exports and stock assets are paid."},
+ // Image, Photo & Design
+ {n:13,name:"photopea.com",url:"https://www.photopea.com/",cat:"Image & Design",f:"free",r:"A full Photoshop clone in your browser. Opens PSD files. Ad-supported but astonishingly powerful."},
+ {n:14,name:"remove.bg",url:"https://www.remove.bg/",cat:"Image & Design",f:"freemium",r:"One-click background removal. Free previews; full-resolution HD downloads cost credits."},
+ {n:15,name:"cleanup.pictures",url:"https://cleanup.pictures/",cat:"Image & Design",f:"freemium",r:"Erase objects/people from photos. Free at standard resolution; HD is paid."},
+ {n:16,name:"unscreen.com",url:"https://www.unscreen.com/",cat:"Image & Design",f:"freemium",r:"Remove backgrounds from video clips. Free tier is low-res/watermarked but useful for quick jobs."},
+ {n:17,name:"squoosh.app",url:"https://squoosh.app/",cat:"Image & Design",f:"free",r:"Google's image compressor with live before/after comparison. Free, open-source, works offline."},
+ {n:18,name:"tinypng.com",url:"https://tinypng.com/",cat:"Image & Design",f:"free",r:"Dead-simple PNG/JPEG/WebP compression that just works. Free for everyday use."},
+ {n:19,name:"tineye.com",url:"https://tineye.com/",cat:"Image & Design",f:"free",r:"Reverse image search that's often better than Google for finding where an image originated."},
+ {n:20,name:"undraw.co",url:"https://undraw.co/",cat:"Image & Design",f:"free",r:"Open-source illustrations you can recolor to match your brand. No attribution required."},
+ {n:21,name:"heroicons.com",url:"https://heroicons.com/",cat:"Image & Design",f:"free",r:"Clean, MIT-licensed SVG icons from the Tailwind team. Free for any use."},
+ {n:22,name:"lucide.dev",url:"https://lucide.dev/",cat:"Image & Design",f:"free",r:"A large, consistent open-source icon set (fork of Feather). Free, well-maintained."},
+ {n:23,name:"coolors.co",url:"https://coolors.co/",cat:"Image & Design",f:"free",r:"Generate color palettes in seconds with the spacebar. Generous free tier."},
+ // Stock
+ {n:24,name:"unsplash.com",url:"https://unsplash.com/",cat:"Stock Photo & Video",f:"free",r:"High-resolution stock photos, free for commercial use. The gold standard."},
+ {n:25,name:"pexels.com",url:"https://www.pexels.com/",cat:"Stock Photo & Video",f:"free",r:"Free stock photos and video. Strong selection, no attribution required."},
+ {n:26,name:"pixabay.com",url:"https://pixabay.com/",cat:"Stock Photo & Video",f:"free",r:"Free images, vectors, illustrations and music. Quality is mixed but the catalog is huge."},
+ // PDF
+ {n:27,name:"tinywow.com",url:"https://tinywow.com/",cat:"PDF & Documents",f:"free",r:"100+ free PDF/image/writing tools in one place. No signup; files auto-delete."},
+ {n:28,name:"smallpdf.com",url:"https://smallpdf.com/",cat:"PDF & Documents",f:"freemium",r:"Polished PDF toolkit. Free tier limits you to a couple of tasks per day."},
+ {n:29,name:"ilovepdf.com",url:"https://www.ilovepdf.com/",cat:"PDF & Documents",f:"free",r:"Merge, split, compress, convert PDFs. Reliable and free for most tasks."},
+ {n:30,name:"pdf24.org",url:"https://www.pdf24.org/en/",cat:"PDF & Documents",f:"free",r:"A genuinely full PDF toolkit, free with no real catches. An underrated gem."},
+ {n:31,name:"sejda.com",url:"https://www.sejda.com/",cat:"PDF & Documents",f:"freemium",r:"Browser-based PDF editor that actually lets you edit text. Free with daily limits."},
+ // Books
+ {n:32,name:"gutenberg.org",url:"https://gutenberg.org/",cat:"Books & Libraries",f:"free",r:"70,000+ public-domain classics, free and legal. The original free ebook library."},
+ {n:33,name:"standardebooks.org",url:"https://standardebooks.org/",cat:"Books & Libraries",f:"free",r:"Public-domain books, lovingly reformatted and typeset. Free and beautiful."},
+ {n:34,name:"pdfdrive.com",url:"https://www.pdfdrive.com/",cat:"Books & Libraries",f:"grey",r:"Massive free PDF book search. ⚠️ Mixed catalog includes copyrighted titles — legally grey."},
+ {n:35,name:"libgen.li",url:"https://libgen.li/",cat:"Books & Libraries",f:"grey",r:"Millions of free textbooks and papers. ⚠️ Piracy — legally grey in most countries."},
+ {n:36,name:"annas-archive.gs",url:"https://annas-archive.gs/",cat:"Books & Libraries",f:"grey",r:"Search engine for essentially every book digitized. ⚠️ Piracy. (.gs is the live mirror; .org is dead.)"},
+ // Courses
+ {n:37,name:"openculture.com",url:"https://www.openculture.com/",cat:"Courses & Learning",f:"free",r:"Aggregates free university courses, audiobooks and films. A great jumping-off point."},
+ {n:38,name:"coursera.org",url:"https://www.coursera.org/",cat:"Courses & Learning",f:"freemium",r:"Audit thousands of real university courses for free; you pay only for certificates."},
+ {n:39,name:"edx.org",url:"https://www.edx.org/",cat:"Courses & Learning",f:"freemium",r:"Free courses from MIT, Harvard and more. Audit track free; certs paid."},
+ {n:40,name:"khanacademy.org",url:"https://www.khanacademy.org/",cat:"Courses & Learning",f:"free",r:"Fully free K-12 through early-college subjects. Nonprofit, no upsell."},
+ {n:41,name:"freecodecamp.org",url:"https://www.freecodecamp.org/",cat:"Courses & Learning",f:"free",r:"A complete, free developer curriculum with hands-on projects and certs. 100% free."},
+ {n:42,name:"theodinproject.com",url:"https://www.theodinproject.com/",cat:"Courses & Learning",f:"free",r:"Free full-stack web dev path. Project-based and open-source."},
+ {n:43,name:"cs50.harvard.edu",url:"https://cs50.harvard.edu/",cat:"Courses & Learning",f:"free",r:"Harvard's legendary intro-to-CS course, free to audit. One of the best courses anywhere."},
+ // Research
+ {n:44,name:"scholar.google.com",url:"https://scholar.google.com/",cat:"Research & Academic",f:"free",r:"The default free academic search engine. Finds papers, citations and PDFs."},
+ {n:45,name:"semanticscholar.org",url:"https://www.semanticscholar.org/",cat:"Research & Academic",f:"free",r:"AI-powered academic search with smart summaries. Free and ad-free."},
+ {n:46,name:"connectedpapers.com",url:"https://www.connectedpapers.com/",cat:"Research & Academic",f:"freemium",r:"Visualizes how papers relate to each other. Free tier limits graphs per month."},
+ {n:47,name:"researchrabbit.ai",url:"https://www.researchrabbit.ai/",cat:"Research & Academic",f:"free",r:"\"Spotify for papers\" — discover related work and build collections. Free."},
+ {n:48,name:"elicit.com",url:"https://elicit.com/",cat:"Research & Academic",f:"freemium",r:"AI research assistant that extracts findings across papers. Limited free credits."},
+ {n:49,name:"consensus.app",url:"https://consensus.app/",cat:"Research & Academic",f:"freemium",r:"Ask a question, get answers backed by scientific papers. Freemium."},
+ {n:50,name:"scispace.com",url:"https://scispace.com/",cat:"Research & Academic",f:"freemium",r:"Explains dense papers in plain language. Freemium."},
+ {n:51,name:"sci-hub.al",url:"https://sci-hub.al/",cat:"Research & Academic",f:"grey",r:"Free access to paywalled research papers. ⚠️ Piracy — legally grey; mirror domains change often."},
+ // Dev
+ {n:52,name:"regex101.com",url:"https://regex101.com/",cat:"Developer Tools",f:"free",r:"Test and debug regular expressions with live explanation. Indispensable."},
+ {n:53,name:"explainshell.com",url:"https://explainshell.com/",cat:"Developer Tools",f:"free",r:"Paste a shell command and it explains every flag."},
+ {n:54,name:"crontab.guru",url:"https://crontab.guru/",cat:"Developer Tools",f:"free",r:"Decodes any cron expression instantly. Simple and free."},
+ {n:55,name:"caniuse.com",url:"https://caniuse.com/",cat:"Developer Tools",f:"free",r:"Browser support tables for every web feature. The reference."},
+ {n:56,name:"devdocs.io",url:"https://devdocs.io/",cat:"Developer Tools",f:"free",r:"Every dev doc in one fast, searchable, offline-capable place."},
+ {n:57,name:"jsonformatter.org",url:"https://jsonformatter.org/",cat:"Developer Tools",f:"free",r:"Format and validate JSON. Ad-supported."},
+ {n:58,name:"codebeautify.org",url:"https://codebeautify.org/",cat:"Developer Tools",f:"free",r:"Format/minify just about any code or data format. Ad-heavy."},
+ {n:59,name:"transform.tools",url:"https://transform.tools/",cat:"Developer Tools",f:"free",r:"Convert between data formats and code (JSON↔TS, etc.) instantly."},
+ {n:60,name:"carbon.now.sh",url:"https://carbon.now.sh/",cat:"Developer Tools",f:"free",r:"Turn code snippets into beautiful shareable images."},
+ {n:61,name:"www.ray.so",url:"https://www.ray.so/",cat:"Developer Tools",f:"free",r:"Slick code screenshots from Raycast. (Use the www host — the apex doesn't serve HTTPS.)"},
+ {n:62,name:"shields.io",url:"https://shields.io/",cat:"Developer Tools",f:"free",r:"Generate the README badges you see on every GitHub repo."},
+ {n:63,name:"phind.com",url:"https://www.phind.com/",cat:"Developer Tools",f:"freemium",r:"AI search engine tuned for developers. Free tier available."},
+ // Whiteboards/Notes
+ {n:64,name:"excalidraw.com",url:"https://excalidraw.com/",cat:"Whiteboards & Notes",f:"free",r:"Hand-drawn-style diagrams and whiteboarding. Open-source, no account needed."},
+ {n:65,name:"tldraw.com",url:"https://www.tldraw.com/",cat:"Whiteboards & Notes",f:"free",r:"An infinite collaborative whiteboard in the browser."},
+ {n:66,name:"miro.com",url:"https://miro.com/",cat:"Whiteboards & Notes",f:"freemium",r:"Polished collaborative whiteboard. Free tier caps you at 3 editable boards."},
+ {n:67,name:"notion.so",url:"https://www.notion.com/",cat:"Whiteboards & Notes",f:"freemium",r:"Notes, docs and databases in one app. Generous free tier for personal use."},
+ {n:68,name:"obsidian.md",url:"https://obsidian.md/",cat:"Whiteboards & Notes",f:"free",r:"Local-first markdown knowledge base with backlinks. Free for personal use."},
+ {n:69,name:"cryptpad.fr",url:"https://cryptpad.fr/",cat:"Whiteboards & Notes",f:"free",r:"End-to-end encrypted alternative to Google Docs. Privacy-first."},
+ // Privacy/Security
+ {n:70,name:"temp-mail.org",url:"https://temp-mail.org/",cat:"Privacy & Security",f:"free",r:"Disposable inbox in one click. Great for avoiding spam signups."},
+ {n:71,name:"10minutemail.com",url:"https://10minutemail.com/",cat:"Privacy & Security",f:"free",r:"A throwaway email that self-destructs in 10 minutes. No signup."},
+ {n:72,name:"privnote.com",url:"https://privnote.com/",cat:"Privacy & Security",f:"free",r:"Send notes that self-destruct after being read once."},
+ {n:73,name:"file.io",url:"https://www.file.io/",cat:"Privacy & Security",f:"freemium",r:"Share files that auto-delete after download. Free tier has size limits."},
+ {n:74,name:"accountkiller.com",url:"https://www.accountkiller.com/",cat:"Privacy & Security",f:"free",r:"Step-by-step guides to delete your account from almost any service."},
+ {n:75,name:"simplelogin.io",url:"https://simplelogin.io/",cat:"Privacy & Security",f:"freemium",r:"Email aliases that hide your real address. Open-source; free tier covers basics."},
+ {n:76,name:"crypt.ee",url:"https://crypt.ee/",cat:"Privacy & Security",f:"free",r:"Encrypted notes and photo storage. Free tier available."},
+ {n:77,name:"haveibeenpwned.com",url:"https://haveibeenpwned.com/",cat:"Privacy & Security",f:"free",r:"Check if your email/password appeared in a data breach. Run by a trusted researcher."},
+ {n:78,name:"virustotal.com",url:"https://www.virustotal.com/",cat:"Privacy & Security",f:"free",r:"Scan any file or URL against 70+ antivirus engines."},
+ {n:79,name:"urlvoid.com",url:"https://www.urlvoid.com/",cat:"Privacy & Security",f:"free",r:"Reputation check for suspicious links/domains."},
+ {n:80,name:"whoer.net",url:"https://whoer.net/",cat:"Privacy & Security",f:"free",r:"Shows exactly what info your browser leaks to websites."},
+ // Utilities
+ {n:81,name:"wolframalpha.com",url:"https://www.wolframalpha.com/",cat:"Utilities & Checkers",f:"freemium",r:"Computational engine that solves math, science and data queries. Step-by-step is paid."},
+ {n:82,name:"alternativeto.net",url:"https://alternativeto.net/",cat:"Utilities & Checkers",f:"free",r:"Find free/open-source alternatives to any paid app."},
+ {n:83,name:"downdetector.com",url:"https://downdetector.com/",cat:"Utilities & Checkers",f:"free",r:"Check if a service is down for everyone or just you."},
+ {n:84,name:"flightradar24.com",url:"https://www.flightradar24.com/",cat:"Utilities & Checkers",f:"free",r:"Live flight tracking on a world map. Generous free tier."},
+ {n:85,name:"camelcamelcamel.com",url:"https://camelcamelcamel.com/",cat:"Utilities & Checkers",f:"free",r:"Amazon price-history charts so you never overpay."},
+ {n:86,name:"thereviewindex.com",url:"https://thereviewindex.com/",cat:"Utilities & Checkers",f:"free",r:"Analyzes Amazon reviews to surface fakes and real pros/cons. (Replaces the retired Fakespot.)"},
+ {n:87,name:"fast.com",url:"https://fast.com/",cat:"Utilities & Checkers",f:"free",r:"Netflix's no-frills internet speed test. Instant."},
+ {n:88,name:"speedtest.net",url:"https://www.speedtest.net/",cat:"Utilities & Checkers",f:"free",r:"The classic bandwidth/latency test with server selection."},
+ {n:89,name:"wetransfer.com",url:"https://wetransfer.com/",cat:"Utilities & Checkers",f:"freemium",r:"Send large files with no account. Free tier covers a few GB."},
+ {n:90,name:"xe.com",url:"https://www.xe.com/",cat:"Utilities & Checkers",f:"free",r:"Clean, trustworthy currency conversion and rate history."},
+ {n:91,name:"timeanddate.com",url:"https://www.timeanddate.com/",cat:"Utilities & Checkers",f:"free",r:"Time zones, a meeting planner and a world clock."},
+ {n:92,name:"taxifarefinder.com",url:"https://www.taxifarefinder.com/",cat:"Utilities & Checkers",f:"free",r:"Estimate cab fares before you ride, in many cities worldwide."},
+ // Writing & AI
+ {n:93,name:"hemingwayapp.com",url:"https://hemingwayapp.com/",cat:"Writing & AI",f:"freemium",r:"Highlights dense, passive and hard-to-read sentences. Free in-browser; AI features paid."},
+ {n:94,name:"languagetool.org",url:"https://languagetool.org/",cat:"Writing & AI",f:"freemium",r:"Grammar and style checker in 25+ languages. Strong free tier; premium upsell."},
+ {n:95,name:"deepl.com",url:"https://www.deepl.com/translator",cat:"Writing & AI",f:"freemium",r:"Translation that's often noticeably more natural than Google. Free tier with length limits."},
+ {n:96,name:"quillbot.com",url:"https://quillbot.com/",cat:"Writing & AI",f:"freemium",r:"Paraphrase and summarize text. Free tier is limited but useful."},
+ {n:97,name:"perplexity.ai",url:"https://www.perplexity.ai/",cat:"Writing & AI",f:"free",r:"AI search that cites its sources. Excellent free tier."},
+ {n:98,name:"claude.ai",url:"https://claude.ai/",cat:"Writing & AI",f:"free",r:"Anthropic's AI assistant — strong at writing, analysis and coding. Free tier available."},
+ {n:99,name:"you.com",url:"https://you.com/",cat:"Writing & AI",f:"freemium",r:"AI search and writing tools with multiple models. Free tier available."},
+ {n:100,name:"rytr.me",url:"https://rytr.me/",cat:"Writing & AI",f:"freemium",r:"AI writing assistant for short copy. Free tier caps monthly characters."},
+];
+const CATS=["Media & Audio","Image & Design","Stock Photo & Video","PDF & Documents","Books & Libraries","Courses & Learning","Research & Academic","Developer Tools","Whiteboards & Notes","Privacy & Security","Utilities & Checkers","Writing & AI"];
+const BADGE={free:["VERIFIED FREE","b-free"],freemium:["FREEMIUM","b-freemium"],grey:["⚠ GREY-AREA","b-grey"]};
+
+let activeCat="All", query="";
+const chipsEl=document.getElementById("chips"), catalogEl=document.getElementById("catalog"), countEl=document.getElementById("count"), qEl=document.getElementById("q");
+
+["All",...CATS].forEach(c=>{
+  const b=document.createElement("button"); b.className="chip"+(c==="All"?" active":""); b.textContent=c; b.dataset.cat=c;
+  b.onclick=()=>{activeCat=c; document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.cat===c)); render();};
+  chipsEl.appendChild(b);
+});
+
+function render(){
+  const q=query.trim().toLowerCase();
+  const filtered=TOOLS.filter(t=>(activeCat==="All"||t.cat===activeCat)&&(!q||t.name.toLowerCase().includes(q)||t.r.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q)));
+  countEl.textContent=`Showing ${filtered.length} of 100 tools`+(activeCat!=="All"?` · ${activeCat}`:"")+(q?` · "${query}"`:"");
+  catalogEl.innerHTML="";
+  if(!filtered.length){catalogEl.innerHTML='<div class="empty">No tools match — try another term.</div>';return;}
+  const cats = activeCat==="All"?CATS:[activeCat];
+  cats.forEach(cat=>{
+    const items=filtered.filter(t=>t.cat===cat); if(!items.length)return;
+    const head=document.createElement("div"); head.className="cat-head";
+    head.innerHTML=`<h2>${cat}</h2><span class="cn">${items.length} ${items.length===1?"tool":"tools"}</span>`;
+    catalogEl.appendChild(head);
+    const grid=document.createElement("div"); grid.className="grid";
+    items.forEach(t=>{
+      const [label,cls]=BADGE[t.f];
+      const card=document.createElement("article"); card.className="card";
+      card.innerHTML=`<div class="card-top"><span class="idx">№ ${String(t.n).padStart(3,"0")}</span></div>
+        <h3><a href="${t.url}" target="_blank" rel="noopener">${t.name}</a></h3>
+        <div class="domain"><a href="${t.url}" target="_blank" rel="noopener">${t.url.replace(/^https?:\/\//,"").replace(/\/$/,"")} <span class="arrow">↗</span></a></div>
+        <p class="review">${t.r}</p>
+        <span class="badge ${cls}">${label}</span>`;
+      grid.appendChild(card);
+    });
+    catalogEl.appendChild(grid);
+  });
+}
+qEl.addEventListener("input",e=>{query=e.target.value; render();});
+render();
+</script>
+</body>
+</html>

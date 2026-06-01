@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>20 Product Ideas — The Contraband Atlas</title>
+<meta name="description" content="20 novel products you could build by combining these 100 free tools — each tied to Ali's portfolio and a monetization angle." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f7f4ec; --lifted:#fffdf7; --ink:#1b1a17; --graphite:#6c675d;
+    --stamp:#c2352a; --oxblood:#8f261d; --sand:#e4ddcc; --ochre:#a8761f;
+    --charcoal:#4d4a42; --olive:#4f5d39;
+    --serif:"Fraunces",Georgia,serif; --sans:"Schibsted Grotesk",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace; --measure:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.045; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); mix-blend-mode:multiply}
+  .wrap{max-width:var(--measure); margin:0 auto; padding:0 clamp(20px,5vw,48px); position:relative; z-index:2}
+  a{color:inherit; text-decoration:none}
+  .mono{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; color:var(--graphite)}
+  nav{position:sticky; top:0; z-index:50; background:rgba(247,244,236,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--sand)}
+  .nav-in{max-width:var(--measure); margin:0 auto; padding:14px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--mono); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.74rem}
+  .seal{width:26px; height:26px; border:1.5px solid var(--stamp); border-radius:50%; display:grid; place-items:center; color:var(--stamp); font-size:.6rem; transform:rotate(-12deg); flex:none}
+  .nav-links{display:flex; gap:clamp(10px,2.5vw,26px); align-items:center}
+  .nav-links a{font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--graphite); padding-bottom:3px; border-bottom:1.5px solid transparent; transition:.16s}
+  .nav-links a:hover{color:var(--ink); border-color:var(--stamp)}
+  .nav-links a.active{color:var(--ink); border-color:var(--ink)}
+
+  header.hero{padding:clamp(48px,9vw,96px) 0 clamp(28px,4vw,48px)}
+  .kicker{display:inline-flex; align-items:center; gap:10px; margin-bottom:24px}
+  .kicker .tick{width:34px; height:1px; background:var(--stamp)}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(2.4rem,6.5vw,4.6rem); line-height:1; letter-spacing:-.025em}
+  h1 em{color:var(--stamp); font-style:italic; font-weight:500}
+  .standfirst{font-size:clamp(1.05rem,2.4vw,1.28rem); color:var(--graphite); max-width:680px; margin-top:24px}
+
+  .ideas{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; padding:20px 0 50px}
+  .idea{position:relative; background:var(--lifted); border:1px solid var(--sand); border-radius:3px; padding:24px 22px 20px; display:flex; flex-direction:column; transition:.18s; overflow:hidden}
+  .idea::after{content:attr(data-n); position:absolute; top:-14px; right:8px; font-family:var(--serif); font-size:5.4rem; font-weight:800; color:rgba(194,53,42,.07); line-height:1; pointer-events:none}
+  .idea:hover{box-shadow:0 16px 38px -20px rgba(27,26,23,.45); transform:translateY(-3px); border-color:#d6cdb8}
+  .idea .num{font-family:var(--mono); font-size:.66rem; letter-spacing:.16em; color:var(--stamp); font-weight:700}
+  .idea h3{font-family:var(--serif); font-size:1.42rem; font-weight:600; line-height:1.08; margin:8px 0 12px; letter-spacing:-.01em}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px}
+  .stack span{font-family:var(--mono); font-size:.56rem; text-transform:uppercase; letter-spacing:.08em; padding:3px 7px; border:1px solid var(--sand); border-radius:2px; color:var(--graphite); background:var(--paper)}
+  .idea p{font-size:.92rem; color:#403d37; flex:1}
+  .meta{margin-top:16px; padding-top:13px; border-top:1px solid var(--sand); display:flex; flex-direction:column; gap:5px}
+  .meta .line{font-family:var(--mono); font-size:.6rem; letter-spacing:.06em; text-transform:uppercase; color:var(--graphite)}
+  .meta .line b{color:var(--ink)}
+  .meta .fit b{color:var(--olive)} .meta .cash b{color:var(--stamp)}
+
+  footer{border-top:2px solid var(--ink); background:var(--ink); color:var(--paper); padding:48px 0 40px; position:relative; z-index:2}
+  footer .foot-links{display:flex; gap:22px; flex-wrap:wrap}
+  footer .foot-links a{font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:#cfc9bc; border-bottom:1px solid transparent; padding-bottom:2px}
+  footer .foot-links a:hover{color:#fff; border-color:var(--stamp)}
+  footer p{color:#b8b3a6; font-size:.9rem; max-width:60ch; margin-top:14px}
+  @media(max-width:720px){.nav-links a:not(.active){display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="seal">✦</span> The Contraband Atlas</a>
+    <div class="nav-links">
+      <a href="index.html">Catalog</a>
+      <a href="summary.html">Exec Summary</a>
+      <a href="ideas.html" class="active">20 Ideas</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker"><span class="tick"></span><span class="mono">20 Build Ideas · Tools → Products</span></div>
+    <h1>What you could<br /><em>build</em> with these.</h1>
+    <p class="standfirst">Twenty product concepts that wire these free tools into something defensible — each tagged with the stack it leans on, where it fits your portfolio, and how it makes money. Skim the cash lines first.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="ideas">
+
+    <div class="idea" data-n="01">
+      <span class="num">IDEA 01</span>
+      <h3>Dead-Link Insurance</h3>
+      <div class="stack"><span>archive.ph</span><span>cron</span><span>Caposeo</span></div>
+      <p>Auto-snapshot every external link a client site publishes; when one 404s, alert the owner and serve the archived version. Link rot quietly tanks SEO — this guarantees it never does.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Caposeo add-on</b></span><span class="line cash">Money: <b>Recurring per-domain SaaS</b></span></div>
+    </div>
+
+    <div class="idea" data-n="02">
+      <span class="num">IDEA 02</span>
+      <h3>Restaurant Media Autopilot</h3>
+      <div class="stack"><span>Pexels API</span><span>Squoosh</span><span>remove.bg</span></div>
+      <p>Type a restaurant name → it pulls on-brand stock, color-grades, removes backgrounds, and exports WebP heroes sized for web and social. The ForkFox pipeline, productized for restaurants' own sites.</p>
+      <div class="meta"><span class="line fit">Fit: <b>ForkFox-for-Business tier</b></span><span class="line cash">Money: <b>B2B per-seat / per-asset</b></span></div>
+    </div>
+
+    <div class="idea" data-n="03">
+      <span class="num">IDEA 03</span>
+      <h3>The Anti-Slop Merge Gate</h3>
+      <div class="stack"><span>LanguageTool</span><span>Hemingway</span><span>Claude</span></div>
+      <p>A GitHub Action / CMS bot that blocks AI-slop prose from publishing — flagging passive voice, rule-of-three, em-dash overuse. You already authored the ruleset for ForkFox; package it for every content team.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Spin-out from ForkFox</b></span><span class="line cash">Money: <b>Dev-tool subscription</b></span></div>
+    </div>
+
+    <div class="idea" data-n="04">
+      <span class="num">IDEA 04</span>
+      <h3>Cron Sentinel</h3>
+      <div class="stack"><span>crontab.guru</span><span>dead-man switch</span></div>
+      <p>Point it at a repo; it parses every cron, explains each in plain English, and fires an alert the moment a scheduled job stops running. Built for the exact silent-dead-cron problem that's bitten your pipelines.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Internal tool → SaaS</b></span><span class="line cash">Money: <b>Indie-hacker monitoring tier</b></span></div>
+    </div>
+
+    <div class="idea" data-n="05">
+      <span class="num">IDEA 05</span>
+      <h3>Web Vitals Image Janitor</h3>
+      <div class="stack"><span>Squoosh codecs</span><span>WASM</span><span>auto-PR</span></div>
+      <p>Scan any live site, find every oversized image, and open a pull request swapping in WebP/AVIF at the right dimensions. Turns a ranking liability into a one-click fix.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Caposeo upsell</b></span><span class="line cash">Money: <b>Per-scan + retainer</b></span></div>
+    </div>
+
+    <div class="idea" data-n="06">
+      <span class="num">IDEA 06</span>
+      <h3>Image Provenance Guard</h3>
+      <div class="stack"><span>TinEye API</span><span>licensing DB</span></div>
+      <p>Before any image publishes, reverse-search its origin and surface the license. Kills accidental copyright exposure for content sites and marketplaces — a trust feature you can charge for.</p>
+      <div class="meta"><span class="line fit">Fit: <b>ForkFox + marketplaces</b></span><span class="line cash">Money: <b>API metered per-check</b></span></div>
+    </div>
+
+    <div class="idea" data-n="07">
+      <span class="num">IDEA 07</span>
+      <h3>Backlog → Newsletter Engine</h3>
+      <div class="stack"><span>summarize.tech</span><span>cobalt</span><span>Claude</span></div>
+      <p>Feed a creator's video backlog; it summarizes each into a clean email issue and assembles a publishable newsletter. Repurposing-as-a-service for the creator economy.</p>
+      <div class="meta"><span class="line fit">Fit: <b>New content product</b></span><span class="line cash">Money: <b>Creator SaaS / done-for-you</b></span></div>
+    </div>
+
+    <div class="idea" data-n="08">
+      <span class="num">IDEA 08</span>
+      <h3>"Where Can I Watch" Bot</h3>
+      <div class="stack"><span>JustWatch</span><span>SMS / chat</span></div>
+      <p>Text a title, get the streaming service back instantly — no app-hopping. A dead-simple consumer utility that monetizes purely through streaming-service affiliate links.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Standalone consumer</b></span><span class="line cash">Money: <b>Affiliate referrals</b></span></div>
+    </div>
+
+    <div class="idea" data-n="09">
+      <span class="num">IDEA 09</span>
+      <h3>Color → Full Brand Kit</h3>
+      <div class="stack"><span>Coolors</span><span>unDraw</span><span>Lucide</span></div>
+      <p>Input one brand color; output a complete kit — palette, recolored illustrations, matched icon set, and ready-to-paste CSS variables. The 20–40-variation design exploration you love, automated.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Design micro-tool</b></span><span class="line cash">Money: <b>One-time export / Pro tier</b></span></div>
+    </div>
+
+    <div class="idea" data-n="10">
+      <span class="num">IDEA 10</span>
+      <h3>The Citation Vault</h3>
+      <div class="stack"><span>archive.ph</span><span>Semantic Scholar</span></div>
+      <p>For researchers and analysts: permanently archive every source the moment you cite it, auto-format the reference, and keep a tamper-proof bibliography. Fixes the "the page changed / vanished" problem for serious work.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Research vertical</b></span><span class="line cash">Money: <b>Freemium + team seats</b></span></div>
+    </div>
+
+    <div class="idea" data-n="11">
+      <span class="num">IDEA 11</span>
+      <h3>"What Does Your App Leak?"</h3>
+      <div class="stack"><span>whoer</span><span>HaveIBeenPwned</span><span>URLVoid</span></div>
+      <p>A one-click privacy report card for indie SaaS founders — what your deployed app exposes, which team emails are breached, whether your domain is flagged. Sells peace of mind, post-incident.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Ties to your ops focus</b></span><span class="line cash">Money: <b>Audit report + monitoring</b></span></div>
+    </div>
+
+    <div class="idea" data-n="12">
+      <span class="num">IDEA 12</span>
+      <h3>Curated Radio Rooms</h3>
+      <div class="stack"><span>radio.garden</span><span>maps</span></div>
+      <p>A polished, themed front-end over global live radio — "Tokyo midnight," "Lisbon café" — with premium ad-free rooms. A calm consumer app with a clean monetization ladder.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Standalone consumer</b></span><span class="line cash">Money: <b>Premium subscription</b></span></div>
+    </div>
+
+    <div class="idea" data-n="13">
+      <span class="num">IDEA 13</span>
+      <h3>Honest Deal Bot</h3>
+      <div class="stack"><span>camelcamelcamel</span><span>TheReviewIndex</span></div>
+      <p>Track Amazon price history <em>and</em> review authenticity, then push only genuine deals on genuinely-good products. Trust-first affiliate content — the opposite of slop deal sites.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Content + affiliate</b></span><span class="line cash">Money: <b>Amazon affiliate</b></span></div>
+    </div>
+
+    <div class="idea" data-n="14">
+      <span class="num">IDEA 14</span>
+      <h3>Resume Doc Pipeline</h3>
+      <div class="stack"><span>pdf24 / iLovePDF</span><span>LanguageTool</span></div>
+      <p>Auto-format, compress, and grammar-check each tailored resume into an ATS-clean PDF. Drops straight into JobBoard's tailoring stage as the polish layer.</p>
+      <div class="meta"><span class="line fit">Fit: <b>JobBoard feature</b></span><span class="line cash">Money: <b>Per-application credit</b></span></div>
+    </div>
+
+    <div class="idea" data-n="15">
+      <span class="num">IDEA 15</span>
+      <h3>Whiteboard → Component Spec</h3>
+      <div class="stack"><span>Excalidraw</span><span>tldraw</span><span>Claude</span></div>
+      <p>Sketch a UI on a board; export it and get back a structured component spec plus scaffold code. The bridge between BoardLord's canvas world and real implementation.</p>
+      <div class="meta"><span class="line fit">Fit: <b>BoardLord extension</b></span><span class="line cash">Money: <b>Premium gate</b></span></div>
+    </div>
+
+    <div class="idea" data-n="16">
+      <span class="num">IDEA 16</span>
+      <h3>Caption + Translate Pipeline</h3>
+      <div class="stack"><span>subtitlecat</span><span>DeepL</span><span>Clipchamp</span></div>
+      <p>Auto-caption and translate short-form video into multiple languages, burned-in and ready to post. Extends the ForkFox social engine to multilingual reach with zero manual editing.</p>
+      <div class="meta"><span class="line fit">Fit: <b>ForkFox social</b></span><span class="line cash">Money: <b>Creator add-on</b></span></div>
+    </div>
+
+    <div class="idea" data-n="17">
+      <span class="num">IDEA 17</span>
+      <h3>The $0 Stack Builder</h3>
+      <div class="stack"><span>this atlas</span><span>AlternativeTo</span></div>
+      <p>A guided configurator: answer a few questions, get a complete "launch your startup for $0" toolchain with setup guides. Productize <em>this very page</em> — sponsorships and affiliate slots fund it.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Meta / Moonlight content</b></span><span class="line cash">Money: <b>Sponsorship + affiliate</b></span></div>
+    </div>
+
+    <div class="idea" data-n="18">
+      <span class="num">IDEA 18</span>
+      <h3>Focus Rooms for Teams</h3>
+      <div class="stack"><span>myNoise</span><span>musicforprogramming</span></div>
+      <p>Branded, synchronized focus-audio rooms for remote teams — shared "deep work" sessions with presence and timers. A low-lift B2B wellness wedge with sticky daily usage.</p>
+      <div class="meta"><span class="line fit">Fit: <b>New B2B SaaS</b></span><span class="line cash">Money: <b>Per-team subscription</b></span></div>
+    </div>
+
+    <div class="idea" data-n="19">
+      <span class="num">IDEA 19</span>
+      <h3>Evidence Brief Generator</h3>
+      <div class="stack"><span>Consensus</span><span>Elicit</span><span>SciSpace</span></div>
+      <p>Ask a business question, get back a one-page, citation-backed brief in minutes. Built for the consultant/analyst ICP you know firsthand — defensible because every claim links to a paper.</p>
+      <div class="meta"><span class="line fit">Fit: <b>Consulting vertical</b></span><span class="line cash">Money: <b>Per-brief / pro seats</b></span></div>
+    </div>
+
+    <div class="idea" data-n="20">
+      <span class="num">IDEA 20</span>
+      <h3>Free-Course Career Paths</h3>
+      <div class="stack"><span>edX</span><span>freeCodeCamp</span><span>Odin</span><span>Claude</span></div>
+      <p>Pick a target job; get a complete, sequenced learning path built only from free/audit courses, with progress tracking and a portfolio plan. Monetize through placement affiliates and premium coaching.</p>
+      <div class="meta"><span class="line fit">Fit: <b>JobBoard companion</b></span><span class="line cash">Money: <b>Affiliate + coaching upsell</b></span></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="index.html">← Full Catalog</a>
+      <a href="summary.html">← Exec Summary</a>
+      <a href="https://github.com/Moh4696/websites-100-audit" target="_blank" rel="noopener">Source Audit</a>
+    </div>
+    <p>Ideas are starting points, not specs — each leans on the free tier of the named tools. Validate the unit economics before you build; the cheapest part is always the prototype.</p>
+  </div>
+</footer>
+</body>
+</html>
